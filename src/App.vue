@@ -8,7 +8,7 @@
     </v-app-bar>
 
     <v-main>
-      <SelectForm :characters="characters" />
+      <SelectForm :characters="characters" :selectedCharacters.sync="selectedCharacters" />
     </v-main>
   </v-app>
 </template>
@@ -27,6 +27,7 @@ export default {
   data: () => ({
     episodes: [],
     characters: [],
+    selectedCharacters: [],
   }),
   mounted() {
     this.getEpisodeList();
