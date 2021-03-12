@@ -23,9 +23,11 @@ export default {
 
   data: () => ({
     episodes: [],
+    characters: [],
   }),
   mounted() {
-    this.getEpisodesList();
+    this.getEpisodeList();
+    this.getCharacterList();
   },
   methods: {
     async request(path = '') {
@@ -38,8 +40,11 @@ export default {
       }
       return result.data;
     },
-    async getEpisodesList() {
+    async getEpisodeList() {
       this.episodes = await this.request('episodes');
+    },
+    async getCharacterList() {
+      this.characters = await this.request('characters');
     },
   },
 };
