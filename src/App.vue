@@ -8,17 +8,20 @@
     </v-app-bar>
 
     <v-main>
+      <SelectForm :characters="characters" />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
+import SelectForm from './components/SelectForm.vue';
 
 export default {
   name: 'App',
 
   components: {
+    SelectForm,
   },
 
   data: () => ({
