@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -21,7 +22,25 @@ export default {
   },
 
   data: () => ({
-    //
+    episodes: [],
   }),
+  mounted() {
+    this.getEpisodesList();
+  },
+  methods: {
+    async request(path = '') {
+      let result;
+      try {
+        const host = process.env.VUE_APP_HOST;
+        result = await axios(host + path);
+      } catch (err) {
+        console.error(err);
+      }
+      return result.data;
+    },
+    async getEpisodesList() {
+      this.episodes = await this.request('episodes');
+    },
+  },
 };
 </script>
