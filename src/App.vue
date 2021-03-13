@@ -6,7 +6,6 @@
       dark
     >
     </v-app-bar>
-
     <v-main>
       <SelectForm :characters="characters" :selectedCharacters.sync="selectedCharacters" />
       <ResultList :episodes="episodesByCharacters" />
@@ -21,12 +20,10 @@ import ResultList from './components/ResultList.vue';
 
 export default {
   name: 'App',
-
   components: {
     SelectForm,
     ResultList,
   },
-
   data: () => ({
     episodes: [],
     characters: [],
@@ -72,6 +69,7 @@ export default {
       return uniqueCharacters;
     },
     breakingBad(query) {
+      if (query.length === 0) return [];
       const { episodes } = this;
       const neededCharacters = (Array.isArray(query)) ? query : [query];
       const result = episodes.reduce((acc, curr) => {
