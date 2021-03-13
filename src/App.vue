@@ -9,11 +9,7 @@
 
     <v-main>
       <SelectForm :characters="characters" :selectedCharacters.sync="selectedCharacters" />
-      <ul>
-        <li v-for="episode in episodesByCharacters" :key="episode">
-          {{ episode }}
-        </li>
-      </ul>
+      <ResultList :episodes="episodesByCharacters" />
     </v-main>
   </v-app>
 </template>
@@ -21,12 +17,14 @@
 <script>
 import axios from 'axios';
 import SelectForm from './components/SelectForm.vue';
+import ResultList from './components/ResultList.vue';
 
 export default {
   name: 'App',
 
   components: {
     SelectForm,
+    ResultList,
   },
 
   data: () => ({
