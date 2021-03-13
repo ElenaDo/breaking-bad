@@ -3,10 +3,10 @@
      <v-row>
       <v-col class="mx-auto" cols="12" sm="8" md="6">
         <v-card
+          :loading="loading ? 'green darken-2' : null"
           class="mx-auto"
-          :loading="loading"
         >
-        <v-card-title>List of Episodes</v-card-title>
+        <v-card-title class="green--text text--darken-2">List of Episodes</v-card-title>
         <v-card-subtitle v-show="!episodes.length" class="mt-3">
           There are no items to show</v-card-subtitle>
         <v-list>

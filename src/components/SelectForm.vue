@@ -1,8 +1,10 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="mt-3">
       <v-col class="mx-auto" cols="12" sm="8" md="6">
         <v-autocomplete
+          color="green darken-2"
+          item-color="green darken-2"
           @change="passCharList"
           v-model="selectedCharacters"
           :items="characters"

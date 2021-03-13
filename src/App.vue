@@ -2,9 +2,16 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="green darken-2"
     >
+    <v-img src="./assets/breaking-bad.png"
+      alt="breaking-bad-logo"
+      max-height="40"
+      max-width="40"
+      contain
+      class="mx-2"
+    ></v-img>
+    <v-toolbar-title>Breaking Bad</v-toolbar-title>
     </v-app-bar>
     <v-main>
       <SelectForm
