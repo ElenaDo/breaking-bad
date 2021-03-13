@@ -41,7 +41,6 @@ export default {
     },
   },
   mounted() {
-    this.getCharacterList();
     this.getEpisodeList();
   },
   methods: {
@@ -57,9 +56,7 @@ export default {
     },
     async getEpisodeList() {
       this.episodes = await this.request('episodes');
-    },
-    async getCharacterList() {
-      this.characters = await this.request('characters');
+      this.characters = this.getCharacters();
     },
     padString(str) {
       return str.trim().padStart(2, '0');
@@ -67,6 +64,14 @@ export default {
     formatEpisodeName(episode) {
       const formatted = `S${this.padString(episode.season)}${this.padString(episode.episode)} - ${episode.title}`;
       return formatted;
+    },
+    getCharacters() {
+      const characters = this.episodes.reduce((acc, curr) => {
+        acc.push(...curr.characters);
+        return acc;
+      }, []);
+      const uniqueCharacters = [...new Set(characters)];
+      return uniqueCharacters;
     },
     breakingBad(query) {
       const { episodes } = this;
@@ -77,7 +82,6 @@ export default {
         }
         return acc;
       }, []);
-      console.log(result.length, query.length);
       return result;
     },
   },
