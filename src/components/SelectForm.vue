@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col class="mx-auto" cols="12" md="6">
+      <v-col class="mx-auto" cols="12" sm="8" md="6">
         <v-autocomplete
           @change="passCharList"
           v-model="selectedCharacters"
@@ -10,8 +10,9 @@
           outlined
           clearable
           dense
-          label="Characters"
+          label="Select characters"
           multiple
+          :loading="loading"
         ></v-autocomplete>
       </v-col>
     </v-row>
@@ -21,7 +22,7 @@
 <script>
 export default {
   name: 'selectForm',
-  props: { characters: Array },
+  props: { characters: Array, loading: Boolean },
   data: () => ({
     selectedCharacters: [],
   }),

@@ -7,8 +7,15 @@
     >
     </v-app-bar>
     <v-main>
-      <SelectForm :characters="characters" :selectedCharacters.sync="selectedCharacters" />
-      <ResultList :episodes="episodesByCharacters" />
+      <SelectForm
+        :characters="characters"
+        :selectedCharacters.sync="selectedCharacters"
+        :loading="loading"
+      />
+      <ResultList
+        :episodes="episodesByCharacters"
+        :loading="loading"
+      />
     </v-main>
   </v-app>
 </template>
@@ -28,6 +35,7 @@ export default {
     episodes: [],
     characters: [],
     selectedCharacters: [],
+    loading: false,
   }),
   computed: {
     episodesByCharacters() {
@@ -41,12 +49,14 @@ export default {
   methods: {
     async request(path = '') {
       let result;
+      this.loading = true;
       try {
         const host = process.env.VUE_APP_HOST;
         result = await axios(host + path);
       } catch (err) {
         console.error(err);
       }
+      this.loading = false;
       return result.data;
     },
     async getEpisodeList() {
